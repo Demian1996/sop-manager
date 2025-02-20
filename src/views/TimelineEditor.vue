@@ -17,9 +17,11 @@
         <template #icon><plus-outlined /></template>
       </a-button>
 
-      <Draggable v-model="currentTimeline.nodes" item-key="id" class="nodes-container" handle=".drag-handle">
-        <template #item="{ element: node, index }">
-          <TimelineNode :timeline="currentTimeline" :node="node" :index="index" :isEditMode="true" />
+      <Draggable :list="currentTimeline.nodes" item-key="id" class="nodes-container" handle=".drag-handle">
+        <template #item="{ element, index }">
+          <div class="item">
+            <TimelineNode :timeline="currentTimeline" :node="element" :index="index" :isEditMode="true" />
+          </div>
         </template>
       </Draggable>
 
