@@ -13,7 +13,7 @@
     </TimelineHeader>
 
     <div class="timeline-nodes">
-      <a-button type="primary" shape="circle" class="add-node-btn left" @click="addNodeBefore(currentTimeline, 0)">
+      <a-button type="primary" shape="circle" class="add-node-btn left" @click="store.addNodeBefore(currentTimeline, 0)">
         <template #icon><plus-outlined /></template>
       </a-button>
 
@@ -29,7 +29,7 @@
         type="primary"
         shape="circle"
         class="add-node-btn right"
-        @click="addNodeAfter(currentTimeline, currentTimeline.nodes.length - 1)"
+        @click="store.addNodeAfter(currentTimeline, currentTimeline.nodes.length - 1)"
       >
         <template #icon><plus-outlined /></template>
       </a-button>
@@ -47,7 +47,6 @@ import { message } from 'ant-design-vue';
 import Draggable from 'vuedraggable';
 import TimelineHeader from '@/components/TimelineHeader.vue';
 import TimelineNode from '@/components/TimelineNode.vue';
-import { addNodeBefore, addNodeAfter, validateTimeline, createEmptyTimeline } from '@/utils/timeline';
 
 const store = useTimelineStore();
 const route = useRoute();
@@ -60,11 +59,11 @@ const isEditPage = !!timelineId;
 const currentTimeline = ref<Timeline>(
   isEditPage
     ? JSON.parse(JSON.stringify(store.getTimelineById(timelineId) as Timeline))
-    : createEmptyTimeline()
+    : store.createEmptyTimeline()
 );
 
 const save = () => {
-  if (!validateTimeline(currentTimeline.value)) return;
+  if (!store.validateTimeline(currentTimeline.value)) return;
   if (isEditPage) {
     store.updateTimeline(currentTimeline.value);
     message.success('更新成功');

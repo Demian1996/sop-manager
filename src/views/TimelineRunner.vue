@@ -17,7 +17,9 @@
     <div class="timeline-nodes">
       <Draggable v-model="currentTimeline.nodes" item-key="id" class="nodes-container" handle=".drag-handle">
         <template #item="{ element: node, index }">
-          <TimelineNode :timeline="currentTimeline" :node="node" :index="index" :isEditMode="true" />
+          <div class="item">
+            <TimelineNode :timeline="currentTimeline" :node="node" :index="index" :isEditMode="true" />
+          </div>
         </template>
       </Draggable>
     </div>
@@ -46,6 +48,10 @@ const currentTimeline = ref<Timeline>(JSON.parse(JSON.stringify(store.getTimelin
 const goBack = () => {
   router.push('/');
 };
+
+const resetAllTasks= () => {
+  
+}
 </script>
 
 <style scoped>

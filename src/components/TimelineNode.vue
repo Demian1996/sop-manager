@@ -39,7 +39,7 @@ import type { TimelineNode as ITimelineNode, Task as ITask, Timeline } from '@/t
 import Task from './Task.vue';
 import TaskEditor from './TaskEditor.vue';
 import { ref } from 'vue';
-import { addTask, createEmptyTask, deleteNode, deleteTask, updateTask } from '@/utils/timeline';
+import { useTimelineStore } from '@/stores/timeline';
 
 const props = defineProps<{
   timeline: Timeline;
@@ -48,19 +48,21 @@ const props = defineProps<{
   isEditMode: boolean;
 }>();
 
+const store = useTimelineStore();
+
 const editingTask = ref<ITask | null>(null);
 
 const onDeleteNode = () => {
-  deleteNode(props.timeline, props.index);
+  store.deleteNode(props.timeline, props.index);
 };
 
 const onCreateTask = () => {
-  editingTask.value = createEmptyTask();
-  addTask(props.node, editingTask.value as ITask);
+  editingTask.value = store.createEmptyTask();
+  store.addTask(props.node, editingTask.value as ITask);
 };
 
 const onDeleteTask = (task: ITask) => {
-  deleteTask(props.node, task);
+  store.deleteTask(props.node, task);
 };
 
 const onEditTask = (task: ITask) => {
@@ -68,7 +70,7 @@ const onEditTask = (task: ITask) => {
 };
 
 const onSaveTask = (task: ITask) => {
-  updateTask(props.node, task);
+  store.updateTask(props.node, task);
   editingTask.value = null;
 };
 </script>
