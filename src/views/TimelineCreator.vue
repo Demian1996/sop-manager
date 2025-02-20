@@ -4,7 +4,7 @@
       :isEditMode="true"
       :title="currentTimeline.name"
       @back="goBack"
-      @updateTitle="(value) => (currentTimeline.name = value)"
+      @update:title="(value: string) => (currentTimeline.name = value)"
     >
       <template #actions>
         <a-button @click="goBack">取消</a-button>

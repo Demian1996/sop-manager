@@ -26,7 +26,6 @@
 import { useTimelineStore } from '@/stores/timeline'
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import type { Timeline } from '@/types/sop';
 import { message, Modal } from 'ant-design-vue';
 import TimelineCard from '@/components/TimelineCard.vue';
 import TimelineActions from '@/components/TimelineActions.vue';
@@ -39,13 +38,6 @@ const { timelines } = storeToRefs(store);
 const goToCreate = () => router.push('/create');
 const goToEdit = (id: string) => router.push(`/edit/${id}`);
 const goToRun = (id: string) => router.push(`/run/${id}`);
-
-const formatDate = (timestamp: number) => {
-  return new Date(timestamp).toLocaleDateString('zh-CN', {
-    month: 'long',
-    day: 'numeric',
-  });
-};
 
 const confirmDelete = (id: string) => {
   Modal.confirm({

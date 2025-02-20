@@ -11,7 +11,7 @@
           :value="title"
           placeholder="输入时间轴名称"
           class="timeline-title-input"
-          @update:value="$emit('updateTitle', $event)"
+          @change="(e: any) => $emit('update:title', e.target.value)"
         />
         <h1 v-else class="timeline-title">{{ title }}</h1>
       </div>
@@ -23,17 +23,17 @@
 </template>
 
 <script setup lang="ts">
-import { ArrowLeftOutlined } from '@ant-design/icons-vue'
+import { ArrowLeftOutlined } from '@ant-design/icons-vue';
 
 defineProps<{
-  isEditMode: boolean
-  title: string
-}>()
+  isEditMode: boolean;
+  title: string;
+}>();
 
 defineEmits<{
-  (e: 'back'): void
-  (e: 'updateTitle', value: string): void
-}>()
+  (e: 'back'): void;
+  (e: 'update:title', value: string): void;
+}>();
 </script>
 
 <style scoped>
@@ -80,4 +80,4 @@ defineEmits<{
   display: flex;
   gap: 8px;
 }
-</style> 
+</style>

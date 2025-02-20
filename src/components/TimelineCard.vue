@@ -14,14 +14,13 @@
       </div>
       <div class="card-info">
         <span class="node-count">{{ timeline.nodes.length }} 个节点</span>
-        <span class="date">{{ formatDate(timeline.updatedAt) }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { DeleteOutlined, EditOutlined, PlayCircleOutlined } from '@ant-design/icons-vue';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons-vue';
 import type { Timeline } from '../types/sop';
 
 defineProps<{
@@ -33,13 +32,6 @@ defineEmits<{
   (e: 'edit'): void;
   (e: 'delete'): void;
 }>();
-
-const formatDate = (timestamp: number) => {
-  return new Date(timestamp).toLocaleDateString('zh-CN', {
-    month: 'long',
-    day: 'numeric',
-  });
-};
 </script>
 
 <style scoped>

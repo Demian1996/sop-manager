@@ -34,10 +34,8 @@ export const useTimelineStore = defineStore(
         description,
         tasks: [],
         completed: false,
-        createdAt: Date.now(),
       };
       timeline.nodes.push(node);
-      timeline.updatedAt = Date.now();
       return node;
     }
 
@@ -53,10 +51,8 @@ export const useTimelineStore = defineStore(
         name,
         description,
         completed: false,
-        createdAt: Date.now(),
       };
       node.tasks.push(task);
-      timeline.updatedAt = Date.now();
       return task;
     }
 
@@ -78,7 +74,6 @@ export const useTimelineStore = defineStore(
       const index = timeline.nodes.findIndex((n) => n.id === nodeId);
       if (index !== -1) {
         timeline.nodes.splice(index, 1);
-        timeline.updatedAt = Date.now();
       }
     }
 
@@ -87,7 +82,6 @@ export const useTimelineStore = defineStore(
       if (!timeline) return;
 
       timeline.nodes = nodes;
-      timeline.updatedAt = Date.now();
     }
 
     return {
