@@ -3,7 +3,6 @@ export interface Task {
   name: string
   description: string
   completed: boolean
-  createdAt: number
 }
 
 export interface TimelineNode {
@@ -12,7 +11,6 @@ export interface TimelineNode {
   description: string
   tasks: Task[]  // 支持并行任务
   completed: boolean
-  createdAt: number
 }
 
 export interface Timeline {
@@ -20,6 +18,4 @@ export interface Timeline {
   name: string
   description: string
   nodes: TimelineNode[]
-  createdAt: number
-  updatedAt: number
 } 

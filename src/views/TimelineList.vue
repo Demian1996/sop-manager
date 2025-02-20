@@ -3,126 +3,96 @@
     <header class="header">
       <div class="header-content">
         <h1>SOP 管理器</h1>
-        <div class="header-actions">
-          <a-upload
-            accept=".json"
-            :show-upload-list="false"
-            :before-upload="handleImport"
-          >
-            <a-button>
-              <template #icon><upload-outlined /></template>
-              导入
-            </a-button>
-          </a-upload>
-          <a-button @click="handleExport">
-            <template #icon><download-outlined /></template>
-            导出
-          </a-button>
-        </div>
+        <TimelineActions @import="handleImport" @export="handleExport" />
       </div>
     </header>
 
     <div class="timeline-list">
-      <div v-for="timeline in timelines" 
-           :key="timeline.id" 
-           class="timeline-card"
-           @click="goToEdit(timeline.id)">
-        <div class="card-content">
-          <div class="card-header">
-            <h3 class="card-title">{{ timeline.name }}</h3>
-            <a-button 
-              type="text"
-              danger
-              class="delete-btn"
-              @click.stop="confirmDelete(timeline.id)"
-            >
-              <template #icon><delete-outlined /></template>
-            </a-button>
-          </div>
-          <div class="card-info">
-            <span class="node-count">{{ timeline.nodes.length }} 个节点</span>
-            <span class="date">{{ formatDate(timeline.updatedAt) }}</span>
-          </div>
-        </div>
-      </div>
-      
-      <div class="timeline-card add-card" @click="goToCreate">
-        <div class="add-content">
-          <div class="plus">+</div>
-          <span>新建时间轴</span>
-        </div>
-      </div>
+      <TimelineCard
+        v-for="timeline in timelines"
+        :key="timeline.id"
+        :timeline="timeline"
+        @run="goToRun(timeline.id)"
+        @edit="goToEdit(timeline.id)"
+        @delete="confirmDelete(timeline.id)"
+      />
+
+      <AddTimelineCard @click="goToCreate" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useTimelineStore } from '../stores/timeline'
-import { storeToRefs } from 'pinia'
-import { useRouter } from 'vue-router'
-import type { Timeline } from '../types/sop'
-import { message } from 'ant-design-vue'
-import { 
-  DeleteOutlined,
-  UploadOutlined,
-  DownloadOutlined
-} from '@ant-design/icons-vue'
+import { useTimelineStore } from '@/stores/timeline'
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
+import type { Timeline } from '@/types/sop';
+import { message, Modal } from 'ant-design-vue';
+import TimelineCard from '@/components/TimelineCard.vue';
+import TimelineActions from '@/components/TimelineActions.vue';
+import AddTimelineCard from '@/components/AddTimelineCard.vue';
 
-const store = useTimelineStore()
-const router = useRouter()
-const { timelines } = storeToRefs(store)
+const store = useTimelineStore();
+const router = useRouter();
+const { timelines } = storeToRefs(store);
 
-const goToCreate = () => router.push('/create')
-const goToEdit = (id: string) => router.push(`/edit/${id}`)
+const goToCreate = () => router.push('/create');
+const goToEdit = (id: string) => router.push(`/edit/${id}`);
+const goToRun = (id: string) => router.push(`/run/${id}`);
 
 const formatDate = (timestamp: number) => {
   return new Date(timestamp).toLocaleDateString('zh-CN', {
     month: 'long',
-    day: 'numeric'
-  })
-}
+    day: 'numeric',
+  });
+};
 
 const confirmDelete = (id: string) => {
-  if (confirm('确定要删除这个时间轴吗？')) {
-    store.deleteTimeline(id)
-  }
-}
+  Modal.confirm({
+    title: '确认删除',
+    content: '确定要删除这个时间轴吗？',
+    okText: '确定',
+    cancelText: '取消',
+    onOk() {
+      store.deleteTimeline(id);
+      message.success('删除成功');
+    }
+  });
+};
 
 // 导出功能
 const handleExport = () => {
-  const data = store.exportData()
-  const blob = new Blob([data], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = `sop-data-${new Date().toISOString().split('T')[0]}.json`
-  a.click()
-  URL.revokeObjectURL(url)
-  message.success('导出成功')
-}
+  const data = store.exportData();
+  const blob = new Blob([data], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `sop-data-${new Date().toISOString().split('T')[0]}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  message.success('导出成功');
+};
 
 // 导入功能
 const handleImport = (file: File) => {
-  const reader = new FileReader()
+  const reader = new FileReader();
   reader.onload = (e) => {
     try {
-      const data = JSON.parse(e.target?.result as string)
+      const data = JSON.parse(e.target?.result as string);
       // 验证数据格式
-      if (Array.isArray(data) && data.every(item => 
-        item.id && item.name && Array.isArray(item.nodes)
-      )) {
-        store.$state.timelines = data
-        message.success('导入成功')
+      if (Array.isArray(data) && data.every((item) => item.id && item.name && Array.isArray(item.nodes))) {
+        store.$state.timelines = data;
+        message.success('导入成功');
       } else {
-        message.error('数据格式不正确')
+        message.error('数据格式不正确');
       }
     } catch (err) {
-      message.error('导入失败，请检查文件格式')
+      message.error('导入失败，请检查文件格式');
     }
-  }
-  reader.readAsText(file)
-  return false // 阻止自动上传
-}
+  };
+  reader.readAsText(file);
+  return false; // 阻止自动上传
+};
 </script>
 
 <style scoped>
@@ -155,7 +125,7 @@ const handleImport = (file: File) => {
   aspect-ratio: 16/10;
   border-radius: 16px;
   background: white;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
@@ -164,7 +134,7 @@ const handleImport = (file: File) => {
 
 .timeline-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
 .card-content {
@@ -205,7 +175,7 @@ const handleImport = (file: File) => {
 }
 
 .add-card:hover {
-  border-color: #4CAF50;
+  border-color: #4caf50;
   background: rgba(76, 175, 80, 0.05);
 }
 
@@ -278,4 +248,4 @@ const handleImport = (file: File) => {
 .timeline-card:hover .delete-btn {
   opacity: 1;
 }
-</style> 
+</style>
