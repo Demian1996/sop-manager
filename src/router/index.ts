@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import TimelineList from '@/views/TimelineList.vue';
 import TimelineEditor from '@/views/TimelineEditor.vue';
-// import TimelineRunner from '@/views/TimelineRunner.vue';
+import TimelineRunner from '@/views/TimelineRunner.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,11 +21,11 @@ const router = createRouter({
       name: 'edit',
       component: TimelineEditor,
     },
-    // {
-    //   path: '/run/:id',
-    //   name: 'run',
-    //   component: TimelineRunner,
-    // },
+    {
+      path: '/run/:id',
+      name: 'run',
+      component: TimelineRunner,
+    },
   ],
 });
 

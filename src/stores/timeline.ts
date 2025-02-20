@@ -1,15 +1,13 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
-import type { Timeline, TimelineNode as ITimelineNode, Task } from '@/types/sop';
+import type { Timeline, TimelineNode, Task } from '@/types/sop';
 import { message } from 'ant-design-vue';
 
 export const useTimelineStore = defineStore(
   'timeline',
   () => {
-    // state
     const timelines = ref<Timeline[]>([]);
 
-    // actions
     function createTimeline(timeline: Timeline) {
       timelines.value.push(timeline);
     }
@@ -45,13 +43,12 @@ export const useTimelineStore = defineStore(
       };
     }
 
-    function createEmptyNode(): ITimelineNode {
+    function createEmptyNode(): TimelineNode {
       return {
         id: crypto.randomUUID(),
         name: '',
         description: '',
         tasks: [],
-        completed: false,
       };
     }
 
@@ -76,18 +73,18 @@ export const useTimelineStore = defineStore(
       timeline.nodes.splice(index, 1);
     }
 
-    function addTask(node: ITimelineNode, task: Task) {
+    function addTask(node: TimelineNode, task: Task) {
       node.tasks.push(task);
     }
 
-    function updateTask(node: ITimelineNode, task: Task) {
+    function updateTask(node: TimelineNode, task: Task) {
       const index = node.tasks.findIndex((t) => t.id === task.id);
       if (index !== -1) {
         node.tasks[index] = task;
       }
     }
 
-    function deleteTask(node: ITimelineNode, task: Task) {
+    function deleteTask(node: TimelineNode, task: Task) {
       const index = node.tasks.findIndex((t) => t.id === task.id);
       if (index !== -1) {
         node.tasks.splice(index, 1);
@@ -118,6 +115,25 @@ export const useTimelineStore = defineStore(
       return true;
     }
 
+    // 重置所有任务的进度
+    function resetAllTasks(timeline: Timeline) {
+      timeline.nodes.forEach((node) => {
+        node.tasks.forEach((task) => {
+          task.completed = false;
+        });
+      });
+    }
+
+    // 完成某个任务
+    function completeTask(task: Task) {
+      task.completed = true;
+    }
+
+    // 取消某个任务
+    function cancelTask(task: Task) {
+      task.completed = false;
+    }
+
     return {
       timelines,
       createTimeline,
@@ -135,6 +151,9 @@ export const useTimelineStore = defineStore(
       updateTask,
       deleteTask,
       validateTimeline,
+      resetAllTasks,
+      completeTask,
+      cancelTask,
     };
   },
   {

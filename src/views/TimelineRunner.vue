@@ -1,7 +1,7 @@
 <template>
   <div class="editor" v-if="currentTimeline">
     <TimelineHeader
-      :isEditMode="true"
+      :isEditMode="false"
       :title="currentTimeline.name"
       @back="goBack"
       @update:title="(value: string) => (currentTimeline.name = value)"
@@ -18,7 +18,7 @@
       <Draggable v-model="currentTimeline.nodes" item-key="id" class="nodes-container" handle=".drag-handle">
         <template #item="{ element: node, index }">
           <div class="item">
-            <TimelineNode :timeline="currentTimeline" :node="node" :index="index" :isEditMode="true" />
+            <TimelineNode :timeline="currentTimeline" :node="node" :index="index" :isEditMode="false" />
           </div>
         </template>
       </Draggable>
@@ -27,14 +27,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useTimelineStore } from '@/stores/timeline';
 import type { Timeline } from '@/types/sop';
-import { message } from 'ant-design-vue';
+import { Modal } from 'ant-design-vue';
 import Draggable from 'vuedraggable';
 import TimelineHeader from '@/components/TimelineHeader.vue';
 import TimelineNode from '@/components/TimelineNode.vue';
+import { ReloadOutlined } from '@ant-design/icons-vue';
 
 const store = useTimelineStore();
 const route = useRoute();
@@ -49,9 +50,39 @@ const goBack = () => {
   router.push('/');
 };
 
-const resetAllTasks= () => {
-  
-}
+const resetAllTasks = () => {
+  store.resetAllTasks(currentTimeline.value);
+};
+
+const checkAllTasksCompleted = () => {
+  const allNodes = currentTimeline.value.nodes;
+  const allCompleted = allNodes.every((node) => node.tasks.every((task) => task.completed));
+
+  if (allCompleted) {
+    Modal.success({
+      title: '🎉 太棒了！',
+      content: '你已经完成了所有任务！继续保持！',
+      okText: '好的',
+      class: 'celebration-modal',
+      onOk: () => {
+        // 重置状态
+        store.resetAllTasks(currentTimeline.value);
+      },
+    });
+  }
+};
+
+// 监听任务状态变化
+watch(
+  () => JSON.stringify(currentTimeline.value.nodes),
+  () => {
+    checkAllTasksCompleted();
+  },
+  { deep: true }
+);
+
+// 初始检查
+checkAllTasksCompleted();
 </script>
 
 <style scoped>

@@ -22,7 +22,8 @@
           :show-checkbox="!isEditMode"
           :show-delete="isEditMode"
           @delete="onDeleteTask"
-          @edit="onEditTask"
+          @complete="onCompleteTask"
+          @cancel="onCancelTask"
         />
       </template>
       <a-button v-if="isEditMode" type="dashed" block @click="onCreateTask" class="add-task-btn">
@@ -65,13 +66,17 @@ const onDeleteTask = (task: ITask) => {
   store.deleteTask(props.node, task);
 };
 
-const onEditTask = (task: ITask) => {
-  editingTask.value = task;
-};
-
 const onSaveTask = (task: ITask) => {
   store.updateTask(props.node, task);
   editingTask.value = null;
+};
+
+const onCompleteTask = (task: ITask) => {
+  store.completeTask(task);
+};
+
+const onCancelTask = (task: ITask) => {
+  store.cancelTask(task);
 };
 </script>
 
