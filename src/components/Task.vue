@@ -15,6 +15,9 @@
           :checked="task.completed"
           @change="(e) => (e.target.checked ? $emit('complete', task) : $emit('cancel', task))"
         />
+        <a-button v-if="showEdit" type="text" class="action-btn" @click="$emit('edit', task)">
+          <template #icon><edit-outlined /></template>
+        </a-button>
         <a-button v-if="showDelete" type="text" danger class="action-btn" @click="$emit('delete', task)">
           <template #icon><delete-outlined /></template>
         </a-button>
@@ -24,13 +27,14 @@
 </template>
 
 <script setup lang="ts">
-import { Checkbox as ACheckbox, Tooltip as ATooltip } from 'ant-design-vue';
-import { DeleteOutlined } from '@ant-design/icons-vue';
+import { Checkbox as ACheckbox, Tooltip as ATooltip, Button as AButton } from 'ant-design-vue';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons-vue';
 import type { Task } from '@/types/sop';
 
 const props = defineProps<{
   task: Task;
   showCheckbox: boolean;
+  showEdit: boolean;
   showDelete: boolean;
 }>();
 
@@ -38,6 +42,7 @@ const emit = defineEmits<{
   (e: 'complete', task: Task): void;
   (e: 'cancel', task: Task): void;
   (e: 'delete', task: Task): void;
+  (e: 'edit', task: Task): void;
 }>();
 
 const handleTaskClick = () => {

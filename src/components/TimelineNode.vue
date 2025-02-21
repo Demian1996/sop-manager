@@ -21,9 +21,11 @@
           :task="task"
           :show-checkbox="!isEditMode"
           :show-delete="isEditMode"
+          :show-edit="isEditMode"
           @delete="onDeleteTask"
           @complete="onCompleteTask"
           @cancel="onCancelTask"
+          @edit="onEditTask"
         />
       </template>
       <a-button v-if="isEditMode" type="dashed" block @click="onCreateTask" class="add-task-btn">
@@ -77,6 +79,10 @@ const onCompleteTask = (task: ITask) => {
 
 const onCancelTask = (task: ITask) => {
   store.cancelTask(task);
+};
+
+const onEditTask = (task: ITask) => {
+  editingTask.value = task;
 };
 </script>
 
