@@ -26,6 +26,13 @@ export const useTimelineStore = defineStore(
       }
     }
 
+    function duplicateTimeline(id: string) {
+      const timeline = timelines.value.find((t) => t.id === id);
+      if (timeline) {
+        timelines.value.push({ ...timeline, id: crypto.randomUUID(), name: `${timeline.name} (副本)` });
+      }
+    }
+
     function getTimelineById(id: string) {
       return timelines.value.find((t) => t.id === id);
     }
@@ -138,6 +145,7 @@ export const useTimelineStore = defineStore(
       timelines,
       createTimeline,
       updateTimeline,
+      duplicateTimeline,
       getTimelineById,
       exportData,
       deleteTimeline,

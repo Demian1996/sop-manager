@@ -4,8 +4,11 @@
       <div class="card-header">
         <h3 class="card-title" :title="timeline.name">{{ timeline.name }}</h3>
         <div class="timeline-actions">
+          <a-tooltip title="克隆">
+            <DiffOutlined class="action-icon duplicate" @click.stop="$emit('duplicate')" />
+          </a-tooltip>
           <a-tooltip title="编辑">
-            <EditOutlined class="action-icon" @click.stop="$emit('edit')" />
+            <EditOutlined class="action-icon edit" @click.stop="$emit('edit')" />
           </a-tooltip>
           <a-tooltip title="删除">
             <DeleteOutlined class="action-icon delete" @click.stop="$emit('delete')" />
@@ -20,7 +23,7 @@
 </template>
 
 <script setup lang="ts">
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons-vue';
+import { DeleteOutlined, EditOutlined, DiffOutlined } from '@ant-design/icons-vue';
 import type { Timeline } from '../types/sop';
 
 defineProps<{
@@ -31,6 +34,7 @@ defineEmits<{
   (e: 'run'): void;
   (e: 'edit'): void;
   (e: 'delete'): void;
+  (e: 'duplicate'): void;
 }>();
 </script>
 
@@ -102,6 +106,14 @@ defineEmits<{
 
 .action-icon.delete:hover {
   color: #ff4d4f;
+}
+
+.action-icon.edit:hover {
+  color: #1890ff;
+}
+
+.action-icon.duplicate:hover {
+  color: #52c41a;
 }
 
 :deep(.anticon) {

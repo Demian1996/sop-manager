@@ -15,6 +15,7 @@
         @run="goToRun(timeline.id)"
         @edit="goToEdit(timeline.id)"
         @delete="confirmDelete(timeline.id)"
+        @duplicate="store.duplicateTimeline(timeline.id)"
       />
 
       <AddTimelineCard @click="goToCreate" />
