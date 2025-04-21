@@ -2,12 +2,12 @@
   <div class="header">
     <div class="title-bar">
       <div class="left-section">
-        <button class="magical-button back-button" @click="$emit('back')">
-          <span class="button-content">
+        <GhibliButton @click="$emit('back')">
+          <template #icon>
             <i class="fas fa-arrow-left"></i>
-            返回
-          </span>
-        </button>
+          </template>
+          返回
+        </GhibliButton>
         <input
           v-if="isEditMode"
           :value="title"
@@ -25,6 +25,8 @@
 </template>
 
 <script setup lang="ts">
+import { GhibliButton } from '@/components';
+
 defineProps<{
   isEditMode: boolean;
   title: string;
@@ -60,47 +62,32 @@ defineEmits<{
   gap: 16px;
 }
 
-.magical-button {
-  position: relative;
-  padding: 8px 16px;
-  border: 2px solid #8b9f78;
-  border-radius: 8px;
-  background: #fdfbec;
-  color: #5c4b51;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  box-shadow: 2px 2px 0 #8b9f78;
-  font-family: 'ZCOOL XiaoWei', serif;
-}
-
-.magical-button:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 #8b9f78;
-  background: #fff;
-}
-
-.magical-button:active {
-  transform: translate(0, 0);
-  box-shadow: 0 0 0 #8b9f78;
-}
-
-.button-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  z-index: 1;
-}
-
 .timeline-title {
   margin: 0;
   font-size: 24px;
   font-weight: 600;
   color: #5c4b51;
   font-family: 'ZCOOL XiaoWei', serif;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+.timeline-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8b9f78, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.timeline-title:hover::after {
+  transform: scaleX(1);
 }
 
 .timeline-title-input {
@@ -139,11 +126,6 @@ defineEmits<{
   .timeline-title-input {
     font-size: 20px;
     width: 200px;
-  }
-
-  .magical-button {
-    padding: 6px 12px;
-    font-size: 12px;
   }
 }
 </style>
