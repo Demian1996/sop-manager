@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Timeline, TimelineNode, Task } from '@/types/sop';
-import { message } from 'ant-design-vue';
+import { message } from '@/utils/messageService';
 
 export const useTimelineStore = defineStore(
   'timeline',
@@ -116,6 +116,12 @@ export const useTimelineStore = defineStore(
       const invalidTasks = timeline.nodes.some((node) => node.tasks.some((task) => !task.name.trim()));
       if (invalidTasks) {
         message.error('请为所有任务填写标题');
+        return false;
+      }
+
+      // 验证任务数量
+      if (timeline.nodes.every((node) => node.tasks.length === 0)) {
+        message.error('请至少添加一个任务');
         return false;
       }
 
