@@ -11,9 +11,6 @@ importers:
       '@vueuse/core':
         specifier: ^10.7.0
         version: 10.11.1(vue@3.5.13(typescript@5.7.3))
-      ant-design-vue:
-        specifier: ^4.0.0
-        version: 4.2.6(vue@3.5.13(typescript@5.7.3))
       pinia:
         specifier: ^2.1.0
         version: 2.3.1(typescript@5.7.3)(vue@3.5.13(typescript@5.7.3))
@@ -81,10 +78,6 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/runtime@7.26.7':
-    resolution: {integrity: sha512-AOPI3D+a8dXnja+iwsUqGRjr1BbZIe771sXdapOtYI531gSqpi92vXivKcq2asu/DFpdl1ceFAKZyRzK2PCVcQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/@babel/runtime/-/runtime-7.26.7.tgz}
-    engines: {node: '>=6.9.0'}
-
   '@babel/types@7.26.8':
     resolution: {integrity: sha512-eUuWapzEGWFEpHFxgEaBG8e3n6S8L3MSu0oda755rOfabWPnh0Our1AozNFVUxGFIhbKgd1ksprsoDGMinTOTA==, tarball: https://nexus3.bilibili.co/repository/npm-public/@babel/types/-/types-7.26.8.tgz}
     engines: {node: '>=6.9.0'}
@@ -92,12 +85,6 @@ packages:
   '@ctrl/tinycolor@3.6.1':
     resolution: {integrity: sha512-SITSV6aIXsuVNV3f3O0f2n/cgyEDWoSqtZMYiAmcsYHydcKrOz3gUxB/iXd/Qf08+IZX4KpgNbvUdMBmWz+kcA==, tarball: https://nexus3.bilibili.co/repository/npm-public/@ctrl/tinycolor/-/tinycolor-3.6.1.tgz}
     engines: {node: '>=10'}
-
-  '@emotion/hash@0.9.2':
-    resolution: {integrity: sha512-MyqliTZGuOm3+5ZRSaaBGP3USLw6+EGykkwZns2EPC5g8jJ4z9OrdZY9apkl3+UP9+sdz76YYkwCKP5gh8iY3g==, tarball: https://nexus3.bilibili.co/repository/npm-public/@emotion/hash/-/hash-0.9.2.tgz}
-
-  '@emotion/unitless@0.8.1':
-    resolution: {integrity: sha512-KOEGMu6dmJZtpadb476IsZBclKvILjopjUii3V+7MnXIQCYh8W3NgNcgwo21n9LXZX6EDIKvqfjYxXebDwxKmQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/@emotion/unitless/-/unitless-0.8.1.tgz}
 
   '@esbuild/android-arm64@0.18.20':
     resolution: {integrity: sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/@esbuild/android-arm64/-/android-arm64-0.18.20.tgz}
@@ -246,9 +233,6 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==, tarball: https://nexus3.bilibili.co/repository/npm-public/@nodelib/fs.walk/-/fs.walk-1.2.8.tgz}
     engines: {node: '>= 8'}
 
-  '@simonwep/pickr@1.8.2':
-    resolution: {integrity: sha512-/l5w8BIkrpP6n1xsetx9MWPWlU6OblN5YgZZphxan0Tq4BByTCETL6lyIeY8lagalS2Nbt4F2W034KHLIiunKA==, tarball: https://nexus3.bilibili.co/repository/npm-public/@simonwep/pickr/-/pickr-1.8.2.tgz}
-
   '@types/node@20.17.19':
     resolution: {integrity: sha512-LEwC7o1ifqg/6r2gn9Dns0f1rhK+fPFDoMiceTJ6kWmVk6bgXBI/9IOWfVan4WiAavK9pIVWdX0/e3J+eEUh5A==, tarball: https://nexus3.bilibili.co/repository/npm-public/@types/node/-/node-20.17.19.tgz}
 
@@ -323,21 +307,9 @@ packages:
   '@vueuse/shared@10.11.1':
     resolution: {integrity: sha512-LHpC8711VFZlDaYUXEBbFBCQ7GS3dVU9mjOhhMhXP6txTV4EhYQg/KGnQuvt/sPAtoUKq7VVUnL6mVtFoL42sA==, tarball: https://nexus3.bilibili.co/repository/npm-public/@vueuse/shared/-/shared-10.11.1.tgz}
 
-  ant-design-vue@4.2.6:
-    resolution: {integrity: sha512-t7eX13Yj3i9+i5g9lqFyYneoIb3OzTvQjq9Tts1i+eiOd3Eva/6GagxBSXM1fOCjqemIu0FYVE1ByZ/38epR3Q==, tarball: https://nexus3.bilibili.co/repository/npm-public/ant-design-vue/-/ant-design-vue-4.2.6.tgz}
-    engines: {node: '>=12.22.0'}
-    peerDependencies:
-      vue: '>=3.2.0'
-
-  array-tree-filter@2.1.0:
-    resolution: {integrity: sha512-4ROwICNlNw/Hqa9v+rk5h22KjmzB1JGTMVKP2AKJBOCgb0yL0ASf0+YvCcLNNwquOHNX48jkeZIJ3a+oOQqKcw==, tarball: https://nexus3.bilibili.co/repository/npm-public/array-tree-filter/-/array-tree-filter-2.1.0.tgz}
-
   array-union@2.1.0:
     resolution: {integrity: sha512-HGyxoOTYUyCM6stUe6EJgnd4EoewAI7zMdfqO+kGjnlZmBDz/cR5pf8r/cR4Wq60sL/p0IkcjUEEPwS3GFrIyw==, tarball: https://nexus3.bilibili.co/repository/npm-public/array-union/-/array-union-2.1.0.tgz}
     engines: {node: '>=8'}
-
-  async-validator@4.2.5:
-    resolution: {integrity: sha512-7HhHjtERjqlNbZtqNqy2rckN/SpOOlmDliet+lP7k+eKZEjPk3DgyeU9lIXLdeLz0uBbbVp+9Qdow9wJWgwwfg==, tarball: https://nexus3.bilibili.co/repository/npm-public/async-validator/-/async-validator-4.2.5.tgz}
 
   async@3.2.6:
     resolution: {integrity: sha512-htCUDlxyyCLMgaM3xXg0C0LW2xqfuQ6p05pCEIsXuyQ+a1koYKTuBMzRNwmybfLgvJDMd0r1LTn4+E0Ti6C2AA==, tarball: https://nexus3.bilibili.co/repository/npm-public/async/-/async-3.2.6.tgz}
@@ -359,20 +331,11 @@ packages:
   commondir@1.0.1:
     resolution: {integrity: sha512-W9pAhw0ja1Edb5GVdIF1mjZw/ASI0AlShXM83UUGe2DVr5TdAPEA1OA8m/g8zWp9x6On7gqufY+FatDbC3MDQg==, tarball: https://nexus3.bilibili.co/repository/npm-public/commondir/-/commondir-1.0.1.tgz}
 
-  compute-scroll-into-view@1.0.20:
-    resolution: {integrity: sha512-UCB0ioiyj8CRjtrvaceBLqqhZCVP+1B8+NWQhmdsm0VXOJtobBCf1dBQmebCCo34qZmUwZfIH2MZLqNHazrfjg==, tarball: https://nexus3.bilibili.co/repository/npm-public/compute-scroll-into-view/-/compute-scroll-into-view-1.0.20.tgz}
-
   computeds@0.0.1:
     resolution: {integrity: sha512-7CEBgcMjVmitjYo5q8JTJVra6X5mQ20uTThdK+0kR7UEaDrAWEQcRiBtWJzga4eRpP6afNwwLsX2SET2JhVB1Q==, tarball: https://nexus3.bilibili.co/repository/npm-public/computeds/-/computeds-0.0.1.tgz}
 
-  core-js@3.40.0:
-    resolution: {integrity: sha512-7vsMc/Lty6AGnn7uFpYT56QesI5D2Y/UkgKounk87OP9Z2H9Z8kj6jzcSGAxFmUtDOS0ntK6lbQz+Nsa0Jj6mQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/core-js/-/core-js-3.40.0.tgz}
-
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==, tarball: https://nexus3.bilibili.co/repository/npm-public/csstype/-/csstype-3.1.3.tgz}
-
-  dayjs@1.11.13:
-    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==, tarball: https://nexus3.bilibili.co/repository/npm-public/dayjs/-/dayjs-1.11.13.tgz}
 
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==, tarball: https://nexus3.bilibili.co/repository/npm-public/de-indent/-/de-indent-1.0.2.tgz}
@@ -380,12 +343,6 @@ packages:
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==, tarball: https://nexus3.bilibili.co/repository/npm-public/dir-glob/-/dir-glob-3.0.1.tgz}
     engines: {node: '>=8'}
-
-  dom-align@1.12.4:
-    resolution: {integrity: sha512-R8LUSEay/68zE5c8/3BDxiTEvgb4xZTF0RKmAHfiEVN3klfIpXfi2/QCoiWPccVQ0J/ZGdz9OjzL4uJEP/MRAw==, tarball: https://nexus3.bilibili.co/repository/npm-public/dom-align/-/dom-align-1.12.4.tgz}
-
-  dom-scroll-into-view@2.0.1:
-    resolution: {integrity: sha512-bvVTQe1lfaUr1oFzZX80ce9KLDlZ3iU+XGNE/bz9HnGdklTieqsbmsLHe+rT2XWqopvL0PckkYqN7ksmm5pe3w==, tarball: https://nexus3.bilibili.co/repository/npm-public/dom-scroll-into-view/-/dom-scroll-into-view-2.0.1.tgz}
 
   email-addresses@5.0.0:
     resolution: {integrity: sha512-4OIPYlA6JXqtVn8zpHpGiI7vE6EQOAg16aGnDMIAlZVinnoZ8208tW1hAbjWydgN/4PLTT9q+O1K6AH/vALJGw==, tarball: https://nexus3.bilibili.co/repository/npm-public/email-addresses/-/email-addresses-5.0.0.tgz}
@@ -478,29 +435,12 @@ packages:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==, tarball: https://nexus3.bilibili.co/repository/npm-public/is-number/-/is-number-7.0.0.tgz}
     engines: {node: '>=0.12.0'}
 
-  is-plain-object@3.0.1:
-    resolution: {integrity: sha512-Xnpx182SBMrr/aBik8y+GuR4U1L9FqMSojwDQwPMmxyC6bvEqly9UBCxhauBF5vNh2gwWJNX6oDV7O+OM4z34g==, tarball: https://nexus3.bilibili.co/repository/npm-public/is-plain-object/-/is-plain-object-3.0.1.tgz}
-    engines: {node: '>=0.10.0'}
-
-  js-tokens@4.0.0:
-    resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/js-tokens/-/js-tokens-4.0.0.tgz}
-
   jsonfile@6.1.0:
     resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/jsonfile/-/jsonfile-6.1.0.tgz}
 
   locate-path@5.0.0:
     resolution: {integrity: sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==, tarball: https://nexus3.bilibili.co/repository/npm-public/locate-path/-/locate-path-5.0.0.tgz}
     engines: {node: '>=8'}
-
-  lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, tarball: https://nexus3.bilibili.co/repository/npm-public/lodash-es/-/lodash-es-4.17.21.tgz}
-
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==, tarball: https://nexus3.bilibili.co/repository/npm-public/lodash/-/lodash-4.17.21.tgz}
-
-  loose-envify@1.4.0:
-    resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==, tarball: https://nexus3.bilibili.co/repository/npm-public/loose-envify/-/loose-envify-1.4.0.tgz}
-    hasBin: true
 
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==, tarball: https://nexus3.bilibili.co/repository/npm-public/magic-string/-/magic-string-0.30.17.tgz}
@@ -528,9 +468,6 @@ packages:
     resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==, tarball: https://nexus3.bilibili.co/repository/npm-public/nanoid/-/nanoid-3.3.8.tgz}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-
-  nanopop@2.4.2:
-    resolution: {integrity: sha512-NzOgmMQ+elxxHeIha+OG/Pv3Oc3p4RU2aBhwWwAqDpXrdTbtRylbRLQztLy8dMMwfl6pclznBdfUhccEn9ZIzw==, tarball: https://nexus3.bilibili.co/repository/npm-public/nanopop/-/nanopop-2.4.2.tgz}
 
   p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==, tarball: https://nexus3.bilibili.co/repository/npm-public/p-limit/-/p-limit-2.3.0.tgz}
@@ -587,12 +524,6 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==, tarball: https://nexus3.bilibili.co/repository/npm-public/queue-microtask/-/queue-microtask-1.2.3.tgz}
 
-  regenerator-runtime@0.14.1:
-    resolution: {integrity: sha512-dYnhHh0nJoMfnkZs6GmmhFknAGRrLznOu5nc9ML+EJxGvrx6H7teuevqVqCuPcPK//3eDrrjQhehXVx9cnkGdw==, tarball: https://nexus3.bilibili.co/repository/npm-public/regenerator-runtime/-/regenerator-runtime-0.14.1.tgz}
-
-  resize-observer-polyfill@1.5.1:
-    resolution: {integrity: sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==, tarball: https://nexus3.bilibili.co/repository/npm-public/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz}
-
   reusify@1.0.4:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==, tarball: https://nexus3.bilibili.co/repository/npm-public/reusify/-/reusify-1.0.4.tgz}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
@@ -605,9 +536,6 @@ packages:
   run-parallel@1.2.0:
     resolution: {integrity: sha512-5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==, tarball: https://nexus3.bilibili.co/repository/npm-public/run-parallel/-/run-parallel-1.2.0.tgz}
 
-  scroll-into-view-if-needed@2.2.31:
-    resolution: {integrity: sha512-dGCXy99wZQivjmjIqihaBQNjryrz5rueJY7eHfTdyWEiR4ttYpsajb14rn9s5d4DY4EcY6+4+U/maARBXJedkA==, tarball: https://nexus3.bilibili.co/repository/npm-public/scroll-into-view-if-needed/-/scroll-into-view-if-needed-2.2.31.tgz}
-
   semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==, tarball: https://nexus3.bilibili.co/repository/npm-public/semver/-/semver-6.3.1.tgz}
     hasBin: true
@@ -616,9 +544,6 @@ packages:
     resolution: {integrity: sha512-hlq8tAfn0m/61p4BVRcPzIGr6LKiMwo4VM6dGi6pt4qcRkmNzTcWq6eCEjEh+qXjkMDvPlOFFSGwQjoEa6gyMA==, tarball: https://nexus3.bilibili.co/repository/npm-public/semver/-/semver-7.7.1.tgz}
     engines: {node: '>=10'}
     hasBin: true
-
-  shallow-equal@1.2.1:
-    resolution: {integrity: sha512-S4vJDjHHMBaiZuT9NPb616CSmLf618jawtv3sufLl6ivK8WocjAo58cXwbRV1cgqxH0Qbv+iUt6m05eqEa2IRA==, tarball: https://nexus3.bilibili.co/repository/npm-public/shallow-equal/-/shallow-equal-1.2.1.tgz}
 
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==, tarball: https://nexus3.bilibili.co/repository/npm-public/slash/-/slash-3.0.0.tgz}
@@ -634,13 +559,6 @@ packages:
   strip-outer@1.0.1:
     resolution: {integrity: sha512-k55yxKHwaXnpYGsOzg4Vl8+tDrWylxDEpknGjhTiZB8dFRU5rTo9CAzeycivxV3s+zlTKwrs6WxMxR95n26kwg==, tarball: https://nexus3.bilibili.co/repository/npm-public/strip-outer/-/strip-outer-1.0.1.tgz}
     engines: {node: '>=0.10.0'}
-
-  stylis@4.3.6:
-    resolution: {integrity: sha512-yQ3rwFWRfwNUY7H5vpU0wfdkNSnvnJinhF9830Swlaxl03zsOjCfmX0ugac+3LtK0lYSgwL/KXc8oYL3mG4YFQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/stylis/-/stylis-4.3.6.tgz}
-
-  throttle-debounce@5.0.2:
-    resolution: {integrity: sha512-B71/4oyj61iNH0KeCamLuE2rmKuTO5byTOSVwECM5FA7TiAiAW+UqTKZ9ERueC4qvgSttUhdmq1mXC3kJqGX7A==, tarball: https://nexus3.bilibili.co/repository/npm-public/throttle-debounce/-/throttle-debounce-5.0.2.tgz}
-    engines: {node: '>=12.22'}
 
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/to-regex-range/-/to-regex-range-5.0.1.tgz}
@@ -715,12 +633,6 @@ packages:
     peerDependencies:
       typescript: '*'
 
-  vue-types@3.0.2:
-    resolution: {integrity: sha512-IwUC0Aq2zwaXqy74h4WCvFCUtoV0iSWr0snWnE9TnU18S66GAQyqQbRf2qfJtUuiFsBf6qp0MEwdonlwznlcrw==, tarball: https://nexus3.bilibili.co/repository/npm-public/vue-types/-/vue-types-3.0.2.tgz}
-    engines: {node: '>=10.15.0'}
-    peerDependencies:
-      vue: ^3.0.0
-
   vue@3.5.13:
     resolution: {integrity: sha512-wmeiSMxkZCSc+PM2w2VRsOYAZC8GdipNFRTsLSfodVqI9mbejKeXEGr8SckuLnrQPGe3oJN5c3K0vpoU9q/wCQ==, tarball: https://nexus3.bilibili.co/repository/npm-public/vue/-/vue-3.5.13.tgz}
     peerDependencies:
@@ -733,9 +645,6 @@ packages:
     resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==, tarball: https://nexus3.bilibili.co/repository/npm-public/vuedraggable/-/vuedraggable-4.1.0.tgz}
     peerDependencies:
       vue: ^3.0.1
-
-  warning@4.0.3:
-    resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==, tarball: https://nexus3.bilibili.co/repository/npm-public/warning/-/warning-4.0.3.tgz}
 
 snapshots:
 
@@ -759,20 +668,12 @@ snapshots:
     dependencies:
       '@babel/types': 7.26.8
 
-  '@babel/runtime@7.26.7':
-    dependencies:
-      regenerator-runtime: 0.14.1
-
   '@babel/types@7.26.8':
     dependencies:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
   '@ctrl/tinycolor@3.6.1': {}
-
-  '@emotion/hash@0.9.2': {}
-
-  '@emotion/unitless@0.8.1': {}
 
   '@esbuild/android-arm64@0.18.20':
     optional: true
@@ -853,11 +754,6 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.0
-
-  '@simonwep/pickr@1.8.2':
-    dependencies:
-      core-js: 3.40.0
-      nanopop: 2.4.2
 
   '@types/node@20.17.19':
     dependencies:
@@ -974,37 +870,7 @@ snapshots:
       - '@vue/composition-api'
       - vue
 
-  ant-design-vue@4.2.6(vue@3.5.13(typescript@5.7.3)):
-    dependencies:
-      '@ant-design/colors': 6.0.0
-      '@ant-design/icons-vue': 7.0.1(vue@3.5.13(typescript@5.7.3))
-      '@babel/runtime': 7.26.7
-      '@ctrl/tinycolor': 3.6.1
-      '@emotion/hash': 0.9.2
-      '@emotion/unitless': 0.8.1
-      '@simonwep/pickr': 1.8.2
-      array-tree-filter: 2.1.0
-      async-validator: 4.2.5
-      csstype: 3.1.3
-      dayjs: 1.11.13
-      dom-align: 1.12.4
-      dom-scroll-into-view: 2.0.1
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      resize-observer-polyfill: 1.5.1
-      scroll-into-view-if-needed: 2.2.31
-      shallow-equal: 1.2.1
-      stylis: 4.3.6
-      throttle-debounce: 5.0.2
-      vue: 3.5.13(typescript@5.7.3)
-      vue-types: 3.0.2(vue@3.5.13(typescript@5.7.3))
-      warning: 4.0.3
-
-  array-tree-filter@2.1.0: {}
-
   array-union@2.1.0: {}
-
-  async-validator@4.2.5: {}
 
   async@3.2.6: {}
 
@@ -1022,25 +888,15 @@ snapshots:
 
   commondir@1.0.1: {}
 
-  compute-scroll-into-view@1.0.20: {}
-
   computeds@0.0.1: {}
 
-  core-js@3.40.0: {}
-
   csstype@3.1.3: {}
-
-  dayjs@1.11.13: {}
 
   de-indent@1.0.2: {}
 
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
-
-  dom-align@1.12.4: {}
-
-  dom-scroll-into-view@2.0.1: {}
 
   email-addresses@5.0.0: {}
 
@@ -1156,10 +1012,6 @@ snapshots:
 
   is-number@7.0.0: {}
 
-  is-plain-object@3.0.1: {}
-
-  js-tokens@4.0.0: {}
-
   jsonfile@6.1.0:
     dependencies:
       universalify: 2.0.1
@@ -1169,14 +1021,6 @@ snapshots:
   locate-path@5.0.0:
     dependencies:
       p-locate: 4.1.0
-
-  lodash-es@4.17.21: {}
-
-  lodash@4.17.21: {}
-
-  loose-envify@1.4.0:
-    dependencies:
-      js-tokens: 4.0.0
 
   magic-string@0.30.17:
     dependencies:
@@ -1200,8 +1044,6 @@ snapshots:
   muggle-string@0.3.1: {}
 
   nanoid@3.3.8: {}
-
-  nanopop@2.4.2: {}
 
   p-limit@2.3.0:
     dependencies:
@@ -1249,10 +1091,6 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  regenerator-runtime@0.14.1: {}
-
-  resize-observer-polyfill@1.5.1: {}
-
   reusify@1.0.4: {}
 
   rollup@3.29.5:
@@ -1263,15 +1101,9 @@ snapshots:
     dependencies:
       queue-microtask: 1.2.3
 
-  scroll-into-view-if-needed@2.2.31:
-    dependencies:
-      compute-scroll-into-view: 1.0.20
-
   semver@6.3.1: {}
 
   semver@7.7.1: {}
-
-  shallow-equal@1.2.1: {}
 
   slash@3.0.0: {}
 
@@ -1282,10 +1114,6 @@ snapshots:
   strip-outer@1.0.1:
     dependencies:
       escape-string-regexp: 1.0.5
-
-  stylis@4.3.6: {}
-
-  throttle-debounce@5.0.2: {}
 
   to-regex-range@5.0.1:
     dependencies:
@@ -1331,11 +1159,6 @@ snapshots:
       semver: 7.7.1
       typescript: 5.7.3
 
-  vue-types@3.0.2(vue@3.5.13(typescript@5.7.3)):
-    dependencies:
-      is-plain-object: 3.0.1
-      vue: 3.5.13(typescript@5.7.3)
-
   vue@3.5.13(typescript@5.7.3):
     dependencies:
       '@vue/compiler-dom': 3.5.13
@@ -1350,7 +1173,3 @@ snapshots:
     dependencies:
       sortablejs: 1.14.0
       vue: 3.5.13(typescript@5.7.3)
-
-  warning@4.0.3:
-    dependencies:
-      loose-envify: 1.4.0
