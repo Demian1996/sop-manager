@@ -23,20 +23,35 @@
         </GhibliButton>
       </div>
       <div class="tasks">
-        <template v-for="task in node.tasks" :key="task.id">
-          <TaskEditor v-if="editingTask && editingTask.id === task.id" :task="editingTask" @save="onSaveTask" />
-          <Task
-            v-else
-            :task="task"
-            :show-checkbox="!isEditMode"
-            :show-delete="isEditMode"
-            :show-edit="isEditMode"
-            @delete="onDeleteTask"
-            @complete="onCompleteTask"
-            @cancel="onCancelTask"
-            @edit="onEditTask"
-          />
-        </template>
+        <Draggable 
+          v-model="node.tasks" 
+          item-key="id" 
+          :disabled="!isEditMode"
+          class="tasks-container"
+          @change="onTasksReorder"
+        >
+          <template #item="{ element: task }">
+            <div class="task-wrapper" :class="{ 'draggable': isEditMode && (!editingTask || editingTask.id !== task.id) }">
+              <TaskEditor 
+                v-if="editingTask && editingTask.id === task.id" 
+                :task="editingTask" 
+                @save="onSaveTask" 
+                class="task-editor"
+              />
+              <Task
+                v-else
+                :task="task"
+                :show-checkbox="!isEditMode"
+                :show-delete="isEditMode"
+                :show-edit="isEditMode"
+                @delete="onDeleteTask"
+                @complete="onCompleteTask"
+                @cancel="onCancelTask"
+                @edit="onEditTask"
+              />
+            </div>
+          </template>
+        </Draggable>
         <button v-if="isEditMode" class="add-task-btn" @click="onCreateTask">
           <span class="button-content">
             <i class="fas fa-plus"></i>
@@ -56,6 +71,7 @@ import TaskEditor from './TaskEditor.vue';
 import { ref } from 'vue';
 import { useTimelineStore } from '@/stores/timeline';
 import { GhibliButton } from '@/components';
+import Draggable from 'vuedraggable';
 
 const props = defineProps<{
   timeline: Timeline;
@@ -95,6 +111,11 @@ const onCancelTask = (task: ITask) => {
 
 const onEditTask = (task: ITask) => {
   editingTask.value = task;
+};
+
+const onTasksReorder = () => {
+  // 任务重新排序后触发，可以在这里添加额外的逻辑
+  // 由于使用了 v-model，tasks 数组已经自动更新
 };
 </script>
 
@@ -253,5 +274,28 @@ const onEditTask = (task: ITask) => {
     font-size: 13px;
     padding: 6px 12px;
   }
+}
+
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-wrapper {
+  width: 100%;
+}
+
+.task-wrapper.draggable {
+  cursor: move;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.task-wrapper.draggable:hover {
+  transform: translateY(-2px);
+}
+
+.task-editor {
+  cursor: default;
 }
 </style>
