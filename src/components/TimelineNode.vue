@@ -132,10 +132,10 @@ const onTasksReorder = () => {
   overflow: hidden;
 }
 
-.ghibli-node:hover {
+/* .ghibli-node:hover {
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 #8b9f78;
-}
+} */
 
 .node-content {
   padding: 16px;

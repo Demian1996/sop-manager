@@ -20,28 +20,30 @@
             <i class="fas fa-check"></i>
           </span>
         </label>
-        <GhibliButton 
-          v-if="showEdit" 
-          type="outline"
-          size="small"
-          class="action-btn" 
-          @click="$emit('edit', task)"
-        >
-          <template #icon>
-            <i class="fas fa-edit"></i>
-          </template>
-        </GhibliButton>
-        <GhibliButton 
-          v-if="showDelete" 
-          type="danger"
-          size="small"
-          class="action-btn" 
-          @click="$emit('delete', task)"
-        >
-          <template #icon>
-            <i class="fas fa-trash-alt"></i>
-          </template>
-        </GhibliButton>
+        <div v-if="showEdit || showDelete" class="action-buttons">
+          <GhibliButton 
+            v-if="showEdit" 
+            type="outline"
+            size="small"
+            class="action-btn" 
+            @click="$emit('edit', task)"
+          >
+            <template #icon>
+              <i class="fas fa-edit"></i>
+            </template>
+          </GhibliButton>
+          <GhibliButton 
+            v-if="showDelete" 
+            type="danger"
+            size="small"
+            class="action-btn" 
+            @click="$emit('delete', task)"
+          >
+            <template #icon>
+              <i class="fas fa-trash-alt"></i>
+            </template>
+          </GhibliButton>
+        </div>
       </div>
     </div>
   </div>
@@ -90,6 +92,7 @@ const handleTaskClick = () => {
   transition: all 0.3s ease;
   box-shadow: 2px 2px 0 #8b9f78;
   overflow: hidden;
+  position: relative;
 }
 
 .ghibli-task:hover {
@@ -109,6 +112,7 @@ const handleTaskClick = () => {
 .task-info {
   flex: 1;
   min-width: 0;
+  margin-right: auto;
 }
 
 .task-name {
@@ -138,7 +142,7 @@ const handleTaskClick = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  cursor: default;
+  flex-shrink: 0;
 }
 
 .ghibli-checkbox {
@@ -194,9 +198,29 @@ const handleTaskClick = () => {
   box-shadow: 2px 2px 0 #8b9f78;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 16px;
+  background: rgba(255, 255, 255, 1);
+  padding-left: 12px;
+  height: 100%;
+  top: 0;
+  display: flex;
+  align-items: center;
+}
+
+.ghibli-task:hover .action-buttons {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .action-btn {
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .action-btn:hover {
@@ -215,6 +239,10 @@ const handleTaskClick = () => {
 
 .ghibli-task.completed .task-description {
   opacity: 0.6;
+}
+
+.ghibli-task.completed .action-buttons {
+  background: rgba(255, 255, 255, 0.9);
 }
 
 @media (max-width: 768px) {
