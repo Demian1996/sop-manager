@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 import type { Timeline, TimelineNode, Task } from '@/types/sop';
-import { message } from 'ant-design-vue';
+import { message } from '@/utils/messageService';
 
 export const useTimelineStore = defineStore(
   'timeline',
@@ -29,7 +29,7 @@ export const useTimelineStore = defineStore(
     function duplicateTimeline(id: string) {
       const timeline = timelines.value.find((t) => t.id === id);
       if (timeline) {
-        timelines.value.push({ ...timeline, id: crypto.randomUUID(), name: `${timeline.name} (副本)` });
+        timelines.value.push({ ...timeline, id: generateId(), name: `${timeline.name} (副本)` });
       }
     }
 
@@ -43,7 +43,7 @@ export const useTimelineStore = defineStore(
 
     function createEmptyTimeline(): Timeline {
       return {
-        id: crypto.randomUUID(),
+        id: generateId(),
         name: '',
         description: '',
         nodes: [createEmptyNode()],
@@ -52,7 +52,7 @@ export const useTimelineStore = defineStore(
 
     function createEmptyNode(): TimelineNode {
       return {
-        id: crypto.randomUUID(),
+        id: generateId(),
         name: '',
         description: '',
         tasks: [],
@@ -61,7 +61,7 @@ export const useTimelineStore = defineStore(
 
     function createEmptyTask(): Task {
       return {
-        id: crypto.randomUUID(),
+        id: generateId(),
         name: '',
         description: '',
         completed: false,
@@ -119,6 +119,12 @@ export const useTimelineStore = defineStore(
         return false;
       }
 
+      // 验证任务数量
+      if (timeline.nodes.every((node) => node.tasks.length === 0)) {
+        message.error('请至少添加一个任务');
+        return false;
+      }
+
       return true;
     }
 
@@ -139,6 +145,19 @@ export const useTimelineStore = defineStore(
     // 取消某个任务
     function cancelTask(task: Task) {
       task.completed = false;
+    }
+
+    function generateId(): string {
+      const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      const length = 16;
+      let result = '';
+      
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * chars.length);
+        result += chars[randomIndex];
+      }
+      
+      return result;
     }
 
     return {

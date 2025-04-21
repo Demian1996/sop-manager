@@ -1,8 +1,13 @@
 <template>
   <div class="container">
+    <div class="magical-background">
+      <div class="clouds"></div>
+      <div class="trees"></div>
+    </div>
+    
     <header class="header">
       <div class="header-content">
-        <h1>SOP 管理器</h1>
+        <h1 class="ghibli-title">SOP 管理器</h1>
         <TimelineActions @import="handleImport" @export="handleExport" />
       </div>
     </header>
@@ -15,22 +20,25 @@
         @run="goToRun(timeline.id)"
         @edit="goToEdit(timeline.id)"
         @delete="confirmDelete(timeline.id)"
-        @duplicate="store.duplicateTimeline(timeline.id)"
+        @duplicate="duplicateTimeline(timeline.id)"
       />
 
       <AddTimelineCard @click="goToCreate" />
     </div>
+
+    <footer class="footer">
+      <p>© {{ new Date().getFullYear() }} SOP Manager - 工作流管理器</p>
+    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useTimelineStore } from '@/stores/timeline'
+import { useTimelineStore } from '@/stores/timeline';
 import { storeToRefs } from 'pinia';
 import { useRouter } from 'vue-router';
-import { message, Modal } from 'ant-design-vue';
-import TimelineCard from '@/components/TimelineCard.vue';
-import TimelineActions from '@/components/TimelineActions.vue';
-import AddTimelineCard from '@/components/AddTimelineCard.vue';
+import { message } from '@/utils/messageService';
+import { modal } from '@/utils/modalService';
+import { TimelineCard, TimelineActions, AddTimelineCard } from '@/components';
 
 const store = useTimelineStore();
 const router = useRouter();
@@ -41,16 +49,22 @@ const goToEdit = (id: string) => router.push(`/edit/${id}`);
 const goToRun = (id: string) => router.push(`/run/${id}`);
 
 const confirmDelete = (id: string) => {
-  Modal.confirm({
+  modal.confirm({
     title: '确认删除',
     content: '确定要删除这个时间轴吗？',
     okText: '确定',
     cancelText: '取消',
+    danger: true,
     onOk() {
       store.deleteTimeline(id);
       message.success('删除成功');
     }
   });
+};
+
+const duplicateTimeline = (id: string) => {
+  store.duplicateTimeline(id);
+  message.success('复制成功');
 };
 
 // 导出功能
@@ -91,18 +105,81 @@ const handleImport = (file: File) => {
 <style scoped>
 .container {
   min-height: 100vh;
-  background: #f5f5f5;
+  background: linear-gradient(135deg, #e8f3d6 0%, #fdfbec 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.magical-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23a8d1a8' fill-opacity='0.1' d='M0,160L48,144C96,128,192,96,288,106.7C384,117,480,171,576,181.3C672,192,768,160,864,138.7C960,117,1056,107,1152,112C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.clouds {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='0.3' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: float 20s infinite linear;
+}
+
+.trees {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23a8d1a8' fill-opacity='0.2' d='M0,288L48,272C96,256,192,224,288,224C384,224,480,256,576,272C672,288,768,288,864,272C960,256,1056,224,1152,224C1248,224,1344,256,1392,272L1440,288L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .header {
   padding: 40px 40px 20px;
+  position: relative;
+  z-index: 1;
 }
 
-.header h1 {
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ghibli-title {
   margin: 0;
-  font-size: 28px;
-  font-weight: 600;
-  color: #2c3e50;
+  font-size: 32px;
+  font-weight: 700;
+  color: #5c4b51;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-family: 'ZCOOL XiaoWei', serif;
+  position: relative;
+  display: inline-block;
+  letter-spacing: 1px;
+}
+
+.ghibli-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #8b9f78, transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.ghibli-title:hover::after {
+  transform: scaleX(1);
 }
 
 .timeline-list {
@@ -112,96 +189,27 @@ const handleImport = (file: File) => {
   gap: 24px;
   max-width: 1400px;
   margin: 0 auto;
-}
-
-.timeline-card {
-  aspect-ratio: 16/10;
-  border-radius: 16px;
-  background: white;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
   position: relative;
+  z-index: 1;
 }
 
-.timeline-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-}
-
-.card-content {
-  padding: 24px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.card-title {
-  margin: 0 0 16px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #2c3e50;
-}
-
-.card-info {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 14px;
-  color: #666;
-}
-
-.add-card {
-  border: 2px dashed #ddd;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.add-card:hover {
-  border-color: #4caf50;
-  background: rgba(76, 175, 80, 0.05);
-}
-
-.add-content {
+.footer {
   text-align: center;
-  color: #666;
+  padding: 20px;
+  color: #5c4b51;
+  font-size: 14px;
+  position: relative;
+  z-index: 1;
+  font-family: 'ZCOOL XiaoWei', serif;
 }
 
-.plus {
-  font-size: 40px;
-  font-weight: 300;
-  margin-bottom: 8px;
-  line-height: 1;
-}
-
-.delete-btn {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #ff5252;
-  color: white;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.timeline-card:hover .delete-btn {
-  opacity: 1;
+@keyframes float {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
 }
 
 @media (max-width: 768px) {
@@ -214,31 +222,8 @@ const handleImport = (file: File) => {
     grid-template-columns: 1fr;
   }
 
-  .timeline-card {
-    aspect-ratio: auto;
-    height: 160px;
+  .ghibli-title {
+    font-size: 24px;
   }
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.header-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.delete-btn {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.timeline-card:hover .delete-btn {
-  opacity: 1;
 }
 </style>

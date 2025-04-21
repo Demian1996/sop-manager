@@ -1,27 +1,27 @@
 <template>
-  <div class="task-content editing">
-    <a-form layout="vertical" class="task-form">
-      <a-form-item>
-        <a-input
-          v-model:value="taskData.name"
+  <div class="ghibli-task-editor">
+    <div class="editor-content">
+      <div class="input-group">
+        <input
+          v-model="taskData.name"
           placeholder="任务名称"
-          class="task-input"
-          :bordered="false"
-          size="large"
+          class="ghibli-input task-name-input"
         />
-      </a-form-item>
-      <a-form-item>
-        <a-textarea
-          v-model:value="taskData.description"
+        <textarea
+          v-model="taskData.description"
           placeholder="任务描述"
-          :rows="3"
-          class="task-textarea"
-          :bordered="false"
-        />
-      </a-form-item>
-    </a-form>
-    <div class="task-edit-actions">
-      <a-button type="primary" size="small" @click="$emit('save', taskData)">保存</a-button>
+          rows="3"
+          class="ghibli-input task-description-input"
+        ></textarea>
+      </div>
+      <div class="editor-actions">
+        <GhibliButton type="primary" size="small" @click="$emit('save', taskData)">
+          <template #icon>
+            <i class="fas fa-check"></i>
+          </template>
+          保存
+        </GhibliButton>
+      </div>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import type { Task } from '@/types/sop';
+import { GhibliButton } from '@/components';
 
 const props = defineProps<{
   task: Task;
@@ -42,43 +43,79 @@ defineEmits<{
 </script>
 
 <style scoped>
-.task-content.editing {
-  background: #fff;
+.ghibli-task-editor {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #8b9f78;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #8b9f78;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.ghibli-task-editor:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #8b9f78;
+}
+
+.editor-content {
   padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
-.task-edit-actions {
+.input-group {
   display: flex;
-  justify-content: flex-end;
-  gap: 8px;
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid #f0f0f0;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.task-form {
-  margin-bottom: 0;
+.ghibli-input {
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid rgba(139, 159, 120, 0.2);
+  background: transparent;
+  font-family: 'ZCOOL XiaoWei', serif;
+  color: #5c4b51;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  resize: none;
 }
 
-.task-input {
+.ghibli-input:hover,
+.ghibli-input:focus {
+  outline: none;
+  border-bottom-color: #8b9f78;
+}
+
+.task-name-input {
   font-size: 16px;
   font-weight: 500;
-  padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
 }
 
-.task-input:hover,
-.task-input:focus {
-  border-bottom-color: #1890ff;
-}
-
-.task-textarea {
+.task-description-input {
   font-size: 14px;
   line-height: 1.6;
-  padding: 8px 0;
-  background: #fafafa;
-  border-radius: 4px;
+  min-height: 80px;
+}
+
+.editor-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(139, 159, 120, 0.2);
+}
+
+@media (max-width: 768px) {
+  .editor-content {
+    padding: 12px;
+  }
+
+  .task-name-input {
+    font-size: 15px;
+  }
+
+  .task-description-input {
+    font-size: 13px;
+    min-height: 60px;
+  }
 }
 </style>
